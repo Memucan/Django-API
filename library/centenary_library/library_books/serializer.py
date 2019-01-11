@@ -34,3 +34,14 @@ class chapterndpage_serializer(serializers.ModelSerializer):
     class Meta:
         model = model_chapters
         fields = "__all__"            
+
+class combined_serializer(serializers.ModelSerializer):
+
+    
+    book_chapters = chapterndpage_serializer(many=True)
+        
+    class Meta:
+        model = model_books
+        fields = "__all__"
+
+#("chapter_number", "chapter_name", "model_booksid_id", "page_content", "model_chaptersid_id")

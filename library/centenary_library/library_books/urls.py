@@ -21,5 +21,9 @@ url(r'^post_page/', views.post_page.as_view(), name='Page1'),
 url(r'^get_page/', views.get_page.as_view(), name='Page2'),
 url(r'^put_page/(?P<pk>[0-9]+)/$', views.put_page.as_view(), name='Page3'),
 url(r'^delete_page/(?P<pk>[0-9]+)/$', views.delete_page.as_view(), name='Page4'),
-url(r'^chapterndpage_get/(?P<pk>[0-9]+)/$', views.chapterndpage_get.as_view(), name='page5')
+url(r'^chapterndpage_get/(?P<pk>[0-9]+)/$', views.chapterndpage_get.as_view(), name='page5'),
+#filter
+url(r'^days_filter/', views.days_filter.as_view(), name='Filterdays'),
+url(r'^author_chapter_filter/', views.author_chapter_filter.as_view(), name='Filter2'),
+url(r'^get_all/(?P<pk>[0-9]+)/$', views.get_all.as_view(), name='geteverthing'),
 ]

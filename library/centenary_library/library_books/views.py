@@ -5,6 +5,9 @@ from rest_framework import status
 from .models import *
 from .serializer import *
 from django.db.models import Q
+from datetime import datetime, timedelta
+from datetime import timedelta
+from django.utils import timezone
 
 #Create Method(POST)
 class post_book(APIView):
@@ -165,3 +168,34 @@ class chapterndpage_get(APIView):
 
         serializer = chapterndpage_serializer(task)
         return Response(serializer.data, status=status.HTTP_200_OK) 
+
+
+class get_all(APIView):
+    def get(self, request, pk):
+
+        try:
+            task = model_books.objects.get(pk=pk)
+        except model_books.DoesNotExist:
+            return Response({"Error":"ID not Found"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = combined_serializer(task)
+        return Response(serializer.data, status=status.HTTP_200_OK) 
+
+#filterdays
+class days_filter(APIView):
+    def get(self, request):
+
+        no_of_days = datetime.today() - timedelta(days=700)
+
+        task = model_books.objects.filter(release_date__gte=no_of_days)
+        
+        serializer = books_serializer(task, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK) 
+
+class author_chapter_filter(APIView): 
+    def get(self, request):
+
+        sample = model_books.objects.filter(Q(book_author__contains='ling'))
+
+        serializer = books_serializer(sample, many = True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
