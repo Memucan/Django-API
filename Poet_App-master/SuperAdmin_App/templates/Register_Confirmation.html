@@ -1,0 +1,19 @@
+{% autoescape off %}
+Dear Mr/Ms {{ user.firstname }} {{user.lastname}},
+
+
+Congrats..!! Your Account has been Verified Successfully.
+
+Please login to the application using https://saleroutestgapi.azurewebsites.net/Login/ 
+
+1. Your Account id: {{ user.schema_name }}
+2. Your username: {{ user.username }}
+3. Your email: {{ user.emailid }}
+
+In case if you are facing any issue in login, please contact supportadmin@inspxo.com 
+
+Thank you,
+Inspxo Support Team
+
+
+{% endautoescape %}
